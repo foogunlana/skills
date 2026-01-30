@@ -13,7 +13,7 @@ A planning skill that helps users start their day or week with intention and cla
 ┌─────────────────────────────────────────────────────┐
 │              WEEKLY (10-15 min)                     │
 │   Review last week → Set goals for this week        │
-│   File: Mon DD-Fri DD.md                            │
+│   File: Jan 27th - Jan 31st.md                      │
 └─────────────────────┬───────────────────────────────┘
                       ↓
 ┌─────────────────────────────────────────────────────┐
@@ -23,6 +23,21 @@ A planning skill that helps users start their day or week with intention and cla
 └─────────────────────────────────────────────────────┘
 ```
 
+## Flow Approach
+
+**After onboarding, use FAST approach:**
+1. Propose note from context (leave `<!-- comments -->` where unsure)
+2. User edits
+3. Critique based on coaching patterns (if enabled)
+
+**Key principles:**
+- **Minimize questions** - Make assumptions from config and previous notes
+- **No multi-select after onboarding** - Only during initial setup
+- **Sparse context = minimal output** - If little info available, keep todos minimal/empty
+- **Guide for next time** - When sparse, note what user should add to get better suggestions
+
+**Only ask questions during onboarding.** After that, propose directly.
+
 ## Step 0: Onboarding (First Run Only)
 
 **Detection:** Check if `.claude/oya.md` exists.
@@ -31,6 +46,8 @@ A planning skill that helps users start their day or week with intention and cla
 | ---------------- | ------------------------ |
 | No config exists | Run this onboarding flow |
 | Config exists    | Skip to Step 1           |
+
+**Note:** This is the ONLY time oya asks questions. After onboarding, oya uses FAST approach (propose directly, no questions).
 
 ### Part 1: Welcome & Branding
 
@@ -195,8 +212,8 @@ Run /oya anytime to start planning.
 4. **Report findings**:
    ```
    "Good morning! Here's what I found:
-   - [✓/✗] This week's note (Mon Nth - Fri Nth)
-   - [✓/✗] Today's entry (Day, Month Nth)
+   - [✓/✗] This week's note (Jan 27th - Jan 31st)
+   - [✓/✗] Today's entry (Monday, January 27th)
 
    Let's set up what's missing..."
    ```
@@ -224,19 +241,28 @@ Before proposing notes, read:
 
 **Propose directly** based on context gathered. Use template from `assets/templates/weekly.md`.
 
+**DO NOT ask questions.** Just propose the note. Make assumptions from config and context.
+
 **Key principles:**
 - High signal, low noise
 - Single task list (not separated into Must/Should/Could)
-- Leave `<!-- comments -->` where unsure
+- Leave `<!-- comments -->` where unsure instead of asking questions
 - Include tasks from all contexts (home, work, personal)
+- If context is sparse, keep tasks minimal/empty
+
+**When context is limited:**
+- Propose minimal structure with `<!-- Add tasks for [context] here -->`
+- After user edits, note: "Add more detail to previous notes to get better suggestions next time"
 
 **After proposing:**
 1. User edits the note
-2. Offer coaching critique based on config patterns
+2. Offer coaching critique based on config patterns (if enabled)
 
 ## Flow B: Daily Entry (FAST approach)
 
 **Propose directly.** Append to weekly note. Use template from `assets/templates/daily.md`.
+
+**DO NOT ask questions.** Just propose the entry. Make assumptions from weekly tasks and config.
 
 **Key principles:**
 - Copy tasks VERBATIM from weekly list (same wording, same emoji)
@@ -244,6 +270,11 @@ Before proposing notes, read:
 - Only include today's relevant tasks
 - Include values nudge from config (if enabled)
 - Balance work AND home/personal tasks (2-4 personal items per day)
+- If weekly tasks are empty, propose minimal structure with `<!-- -->`
+
+**When weekly tasks are sparse:**
+- Propose minimal daily entry
+- After user edits, note: "Add more tasks to weekly note to get better daily suggestions"
 
 ## Flow C: Weekend Flow
 
@@ -283,13 +314,20 @@ Only coach if `coaching.enabled: true` in config.
 | Type   | Default Path                      |
 | ------ | --------------------------------- |
 | Base   | `{paths.base}/{Year}/{MM}-{Mon}/` |
-| Weekly | `{Mon} {DD}-{Fri} {DD}.md`        |
+| Weekly | `{Mon} {DD}{th/st/nd/rd} - {Mon} {DD}{th/st/nd/rd}.md` (e.g., `Jan 27th - Jan 31st.md`) |
 | Config | `.claude/oya.md`                  |
+
+**Weekly file naming format:**
+- Use full month name (Jan, Feb, Mar, etc.)
+- Use ordinal indicators (27th, 1st, 2nd, 3rd, etc.)
+- Format: `[Month] [Day with ordinal] - [Month] [Day with ordinal].md`
+- Examples: `Jan 27th - Jan 31st.md`, `Feb 1st - Feb 5th.md`, `Dec 30th - Jan 3rd.md`
 
 ## Reflection (End of Day)
 
 When user returns in evening or next morning:
-1. Ask what went well, what didn't
+1. Ask ONE straightforward question: "What went well today? What didn't?"
 2. Keep it minimal - bullet points only
 3. Append under **Reflections** in that day's entry
 4. Sync completed tasks back to weekly list
+5. No follow-up questions - user can elaborate if they want
