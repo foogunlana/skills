@@ -7,21 +7,13 @@ description: Plan and stay on track. Fast. Practical. Intentional.
 
 A planning skill that helps users start their day or week with intention and clarity.
 
+> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
+
 ## Core Workflow
 
-```
-┌─────────────────────────────────────────────────────┐
-│              WEEKLY (10-15 min)                     │
-│   Review last week → Set goals for this week        │
-│   File: Jan 27th - Jan 31st.md                      │
-└─────────────────────┬───────────────────────────────┘
-                      ↓
-┌─────────────────────────────────────────────────────┐
-│              DAILY (5 min)                          │
-│   Copy tasks from weekly → Set today's focus        │
-│   Appended to weekly note                           │
-└─────────────────────────────────────────────────────┘
-```
+Weekly planning (10-15 min) → Daily planning (5 min) → Reflect (2 min)
+
+See `references/branding.md` for visual diagrams.
 
 ## Two Flows
 
@@ -44,51 +36,11 @@ Oya has two distinct flows depending on whether the user has been onboarded:
 
 **Step 1: Welcome & Branding**
 
-Display this welcome message (verbatim):
-
-```
-.
-            ██████╗  ██╗   ██╗  █████╗
-           ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
-           ██║   ██║  ╚████╔╝  ███████║
-           ██║   ██║   ╚██╔╝   ██╔══██║
-           ╚██████╔╝    ██║    ██║  ██║
-            ╚═════╝     ╚═╝    ╚═╝  ╚═╝
-
-             🌀 Let's move. Let's go.
-
-     A planning companion for intentional days
-```
-
-Then show the origin:
-
-> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
-
-Then explain the workflow:
-
-```
-                 ┌─────────────┐
-                 │   WEEKLY    │  Set goals for the week
-                 │  (10-15m)   │  Review what's ahead
-                 └──────┬──────┘
-                        │
-                        ▼
-                 ┌─────────────┐
-                 │    DAILY    │  Pick today's focus
-                 │    (5m)     │  From your weekly list
-                 └──────┬──────┘
-                        │
-                        ▼
-                 ┌─────────────┐
-                 │  REFLECT    │  What worked? What didn't?
-                 │   (2m)      │  Tasks sync automatically
-                 └─────────────┘
-```
-
-**Key concepts:**
-- 🌀 Tasks carry forward automatically until done
-- 🌀 Optional coaching helps you spot planning patterns
-- 🌀 Optional values & nudges keep priorities visible
+Read `references/branding.md` and display verbatim:
+1. Logo
+2. Origin quote
+3. Workflow diagram
+4. Key concepts
 
 ---
 
