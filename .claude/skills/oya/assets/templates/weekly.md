@@ -1,4 +1,4 @@
-# {start_date} - {end_date}
+# Week {n} - {start_date} - {end_date}
 
 > {mantra}
 

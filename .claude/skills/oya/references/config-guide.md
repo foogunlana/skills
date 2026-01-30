@@ -31,7 +31,7 @@ emojis:
   protected: "🧠"
 
 paths:
-  base: "Planning"
+  base: "planning"
   weekly: "{year}/{month}/{mon} - {fri}.md"
 
 coaching:
@@ -84,7 +84,7 @@ Customize task type indicators:
 
 | Field | Description | Default |
 |-------|-------------|---------|
-| `paths.base` | Root folder for planning notes | "Planning" |
+| `paths.base` | Root folder for planning notes | "planning" |
 | `paths.weekly` | Weekly note path pattern | "{year}/{month}/{mon} - {fri}.md" |
 
 **Path variables:**
