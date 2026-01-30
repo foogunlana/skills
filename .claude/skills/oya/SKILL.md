@@ -7,7 +7,8 @@ description: Plan and stay on track. Fast. Practical. Intentional.
 
 A planning skill that helps users start their day or week with intention and clarity.
 
-> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
+> *Named for the Yoruba goddess of winds and change — Oya clears\n
+> what no longer serves, making space for transformation.*
 
 ## Core Workflow
 

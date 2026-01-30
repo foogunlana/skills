@@ -36,7 +36,8 @@ Display these verbatim when referenced from SKILL.md.
 
 ## Origin
 
-> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
+> *Named for the Yoruba goddess of winds and change — Oya clears\n
+> what no longer serves, making space for transformation.*
 
 ## Workflow Diagram
 
