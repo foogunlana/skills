@@ -1,18 +1,38 @@
-# Oya - Planning Skill for Claude Code
+# Oya
 
 > *Named for the Yoruba goddess of winds and change—Oya clears what no longer serves, making space for transformation.*
+
+**🌀 Let's move. Let's go.**
 
 A planning companion that helps you start your day or week with intention and clarity.
 
 ```
-            ██████╗  ██╗   ██╗  █████╗
-           ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
-           ██║   ██║  ╚████╔╝  ███████║
-           ██║   ██║   ╚██╔╝   ██╔══██║
-           ╚██████╔╝    ██║    ██║  ██║
-            ╚═════╝     ╚═╝    ╚═╝  ╚═╝
+ ┌───┐  ┐   ┌  ┌───┐
+ │   │   \ /   │   │
+ │   │    │    ├───┤
+ │   │    │    │   │
+ └───┘    ┴    ┴   ┴
+```
 
-             🌀 Let's move. Let's go.
+## How It Works
+
+```
+     ┌─────────────┐
+     │   WEEKLY    │  Set goals for the week
+     │  (10-15m)   │  Review what's ahead
+     └──────┬──────┘
+            |
+            v
+     ┌─────────────┐
+     │    DAILY    │  Pick today's focus
+     │    (5m)     │  From your weekly list
+     └──────┬──────┘
+            |
+            v
+     ┌─────────────┐
+     │  REFLECT    │  What worked? What didn't?
+     │   (2m)      │  Tasks sync automatically
+     └─────────────┘
 ```
 
 ## What is Oya?
@@ -43,7 +63,7 @@ Simply run `/oya` in Claude Code and you'll be guided through:
 
 After setup, run `/oya` anytime to start planning.
 
-## How It Works
+## The Flows
 
 ### Weekly Planning (10-15 min)
 

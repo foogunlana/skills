@@ -44,45 +44,39 @@ Oya has two distinct flows depending on whether the user has been onboarded:
 
 **Step 1: Welcome & Branding**
 
-Display this welcome message (verbatim):
+Display this welcome message:
+
+> *Named for the Yoruba goddess of winds and change—Oya clears what no longer serves, making space for transformation.*
+
+**🌀 Let's move. Let's go.**
 
 ```
-.
-            ██████╗  ██╗   ██╗  █████╗
-           ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
-           ██║   ██║  ╚████╔╝  ███████║
-           ██║   ██║   ╚██╔╝   ██╔══██║
-           ╚██████╔╝    ██║    ██║  ██║
-            ╚═════╝     ╚═╝    ╚═╝  ╚═╝
-
-             🌀 Let's move. Let's go.
-
-     A planning companion for intentional days
+ ┌───┐  ┐   ┌  ┌───┐
+ │   │   \ /   │   │
+ │   │    │    ├───┤
+ │   │    │    │   │
+ └───┘    ┴    ┴   ┴
 ```
-
-Then show the origin:
-
-> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
 
 Then explain the workflow:
 
 ```
-                 ┌─────────────┐
-                 │   WEEKLY    │  Set goals for the week
-                 │  (10-15m)   │  Review what's ahead
-                 └──────┬──────┘
-                        │
-                        ▼
-                 ┌─────────────┐
-                 │    DAILY    │  Pick today's focus
-                 │    (5m)     │  From your weekly list
-                 └──────┬──────┘
-                        │
-                        ▼
-                 ┌─────────────┐
-                 │  REFLECT    │  What worked? What didn't?
-                 │   (2m)      │  Tasks sync automatically
-                 └─────────────┘
+     ┌─────────────┐
+     │   WEEKLY    │  Set goals for the week
+     │  (10-15m)   │  Review what's ahead
+     └──────┬──────┘
+            |
+            v
+     ┌─────────────┐
+     │    DAILY    │  Pick today's focus
+     │    (5m)     │  From your weekly list
+     └──────┬──────┘
+            |
+            v
+     ┌─────────────┐
+     │  REFLECT    │  What worked? What didn't?
+     │   (2m)      │  Tasks sync automatically
+     └─────────────┘
 ```
 
 **Key concepts:**
