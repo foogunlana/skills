@@ -44,9 +44,10 @@ Oya has two distinct flows depending on whether the user has been onboarded:
 
 **Step 1: Welcome & Branding**
 
-Display this welcome message:
+Display this welcome message (verbatim):
 
 ```
+.
             ██████╗  ██╗   ██╗  █████╗
            ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
            ██║   ██║  ╚████╔╝  ███████║
