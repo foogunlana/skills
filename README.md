@@ -1,189 +1,152 @@
-# Claude Code Skills
+# Oya - Planning Skill for Claude Code
 
-A collection of skills that extend Claude Code's capabilities with specialized knowledge, workflows, and tools.
+> *Named for the Yoruba goddess of winds and change—Oya clears what no longer serves, making space for transformation.*
 
-## What are Skills?
-
-Skills are modular, self-contained packages that transform Claude from a general-purpose agent into a specialized agent equipped with domain-specific knowledge. Think of them as "onboarding guides" that provide:
-
-- **Specialized workflows** - Multi-step procedures for specific domains
-- **Tool integrations** - Instructions for working with specific file formats or APIs
-- **Domain expertise** - Company-specific knowledge, schemas, business logic
-- **Bundled resources** - Scripts, references, and assets for complex tasks
-
-## Available Skills
-
-### oya
-Plan and stay on track. Fast. Practical. Intentional.
-
-A planning companion that helps you start your day or week with intention and clarity through:
-- **Weekly planning** (10-15 min) - Review last week, set goals for this week
-- **Daily planning** (5 min) - Copy tasks from weekly, set today's focus
-- **Automatic task carry-forward** - Uncompleted tasks move forward automatically
-- **Optional coaching** - Pattern detection to help spot overloading or vague goals
-
-**Usage:** Run `/oya` in Claude Code to start planning.
-
-### skill-creator
-Guide for creating effective skills.
-
-Provides comprehensive guidance for building new skills, including:
-- Skill creation workflow and best practices
-- Design patterns for different skill types
-- Scripts for initialization, validation, and packaging
-- Examples and templates
-
-**Usage:** Automatically triggered when creating or updating skills.
-
-## Using Skills
-
-Skills are automatically loaded by Claude Code from your `.claude/skills/` directory. To use an installed skill:
-
-1. Open Claude Code in a directory with skills installed
-2. The skills are automatically available - just ask Claude for help with tasks the skills support
-3. You can explicitly invoke a skill using `/skill-name` (e.g., `/oya`)
-
-## Creating New Skills
-
-### Quick Start
-
-1. **Initialize a new skill:**
-   ```bash
-   .claude/skills/skill-creator/scripts/init_skill.py my-skill --path skills
-   ```
-
-2. **Develop your skill:**
-   - Edit `skills/my-skill/SKILL.md` to define the skill's behavior
-   - Add scripts, references, or assets as needed
-   - Delete any example files you don't need
-
-3. **Package the skill:**
-   ```bash
-   .claude/skills/skill-creator/scripts/package_skill.py skills/my-skill
-   ```
-
-4. **Share or install:**
-   - The `.skill` file can be shared with others
-   - Install locally by copying to `.claude/skills/`
-
-### Skill Structure
+A planning companion that helps you start your day or week with intention and clarity.
 
 ```
-my-skill/
-├── SKILL.md              # Required: Metadata + instructions
-├── scripts/              # Optional: Executable Python/Bash scripts
-├── references/           # Optional: Documentation loaded as needed
-└── assets/               # Optional: Templates, images, boilerplate
+            ██████╗  ██╗   ██╗  █████╗
+           ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
+           ██║   ██║  ╚████╔╝  ███████║
+           ██║   ██║   ╚██╔╝   ██╔══██║
+           ╚██████╔╝    ██║    ██║  ██║
+            ╚═════╝     ╚═╝    ╚═╝  ╚═╝
+
+             🌀 Let's move. Let's go.
 ```
 
-#### SKILL.md
+## What is Oya?
 
-Every skill requires a `SKILL.md` file with:
+Oya is a skill for [Claude Code](https://claude.ai/code) that provides fast, practical, intentional planning. It helps you:
 
-**Frontmatter (YAML):**
+- **Plan your week** (10-15 min) - Review last week, set goals for this week
+- **Plan your day** (5 min) - Pick today's focus from your weekly list
+- **Stay on track** - Tasks carry forward automatically until done
+- **Get coaching** (optional) - Spot patterns like overloading or vague goals
+- **Align with values** (optional) - Keep priorities visible with personal values and nudges
+
+## Getting Started
+
+### Installation
+
+1. Install Claude Code if you haven't already (see [claude.ai/code](https://claude.ai/code))
+2. Clone this repository or download the oya skill
+3. The skill is located in `.claude/skills/oya/` and will be automatically loaded by Claude Code
+
+### First Use
+
+Simply run `/oya` in Claude Code and you'll be guided through:
+
+1. **Welcome & Setup** - Learn how Oya works and personalize your experience
+2. **Configuration** - Set your name, mantra, life areas, values, and preferences
+3. **Ready to Plan** - Your config is saved to `.claude/oya.md` in your working directory
+
+After setup, run `/oya` anytime to start planning.
+
+## How It Works
+
+### Weekly Planning (10-15 min)
+
+Creates a weekly note with:
+- Review of last week's accomplishments
+- Goals and tasks for the upcoming week
+- Tasks from all life areas (work, home, personal, etc.)
+
+### Daily Planning (5 min)
+
+Appends a daily entry to your weekly note with:
+- Tasks copied from your weekly list (only today's relevant items)
+- Focus areas for the day
+- Optional values reminder to keep priorities aligned
+
+### Task Carry-Forward
+
+Tasks automatically move forward until completed:
+- `[ ]` Not started → carries forward
+- `[-]` In progress → carries forward
+- `[x]` Completed → doesn't carry forward
+
+### Weekend Flow
+
+On weekends, Oya keeps it minimal:
+- One tailored suggestion (rest, connection, or creative pursuit)
+- Encouragement to truly rest, connect, and play
+
+## Configuration
+
+Your personal configuration is stored in `.claude/oya.md` in your working directory.
+
+### Basic Settings
+
 ```yaml
----
-name: my-skill
-description: What the skill does and when to use it
----
+name: "Your Name"
+mantra: "Your guiding phrase"
+contexts:
+  - home
+  - work
+  - personal
+coaching:
+  enabled: true
 ```
 
-**Body (Markdown):**
-- Instructions for using the skill
-- References to bundled resources
-- Workflows, examples, and guidance
+### Optional Features
 
-#### Bundled Resources (Optional)
-
-- **scripts/** - Executable code for deterministic operations (e.g., `rotate_pdf.py`)
-- **references/** - Documentation loaded into context when needed (e.g., API docs, schemas)
-- **assets/** - Files used in output (e.g., templates, boilerplate code, images)
-
-## Skill Development Tools
-
-All skill management scripts are located in `.claude/skills/skill-creator/scripts/`:
-
-### init_skill.py
-Initialize a new skill from template:
-```bash
-.claude/skills/skill-creator/scripts/init_skill.py <skill-name> --path <output-dir>
+**Values** - Displayed in weekly notes to keep priorities visible:
+```yaml
+values:
+  enabled: true
+  list:
+    - Focus
+    - Balance
+    - Connection
 ```
 
-Creates a skill directory with:
-- SKILL.md template with TODO placeholders
-- Example scripts/, references/, and assets/ directories
-- Placeholder files you can customize or delete
-
-### package_skill.py
-Validate and package a skill:
-```bash
-.claude/skills/skill-creator/scripts/package_skill.py <path/to/skill> [output-dir]
+**Nudges** - Personal reminders shown in daily entries:
+```yaml
+nudges:
+  enabled: true
+  list:
+    - "If not now, when?"
+    - "Focus on service"
 ```
 
-Automatically validates the skill first, then creates a `.skill` file (zip format) if validation passes.
-
-### quick_validate.py
-Validate a skill without packaging:
-```bash
-.claude/skills/skill-creator/scripts/quick_validate.py <path/to/skill>
+**Custom Paths** - Change where notes are stored:
+```yaml
+paths:
+  base: "planning"  # Default location
 ```
 
-Checks:
-- YAML frontmatter format and required fields
-- Naming conventions (hyphen-case)
-- Description completeness and length limits
-- File organization
+See `.claude/skills/oya/references/config-guide.md` for full configuration options.
 
-## Design Principles
+## Commands
 
-### Keep Skills Concise
-The context window is shared across all skills, system prompts, and conversation history. Only include information Claude doesn't already have.
-
-### Progressive Disclosure
-Skills load in three levels:
-1. **Metadata** (name + description) - Always loaded
-2. **SKILL.md body** - Loaded when skill triggers
-3. **Bundled resources** - Loaded as needed
-
-Keep SKILL.md under 500 lines. Split larger content into `references/` files.
-
-### Degrees of Freedom
-Match specificity to task fragility:
-- **High freedom** - Text instructions for flexible approaches
-- **Medium freedom** - Pseudocode for preferred patterns with variation
-- **Low freedom** - Specific scripts for fragile, critical operations
-
-## Best Practices
-
-1. **Start with concrete examples** - Understand how the skill will be used
-2. **Test all scripts** - Run scripts to ensure they work correctly
-3. **Write clear descriptions** - Include both what the skill does AND when to use it
-4. **Delete unused examples** - Remove template files you don't need
-5. **Use imperative form** - Write instructions as commands (e.g., "Run the script")
-6. **Avoid duplication** - Information should live in SKILL.md OR references, not both
-7. **Iterate based on usage** - Refine skills based on real-world use
+- `/oya` - Start planning (creates weekly or daily notes as needed)
+- `/oya critique` - Get coaching feedback on your current plans
 
 ## Repository Structure
 
 ```
-skills/
-├── .claude/
-│   └── skills/          # Installed skills (active)
-├── skills/              # Skill development source
-│   └── oya/            # Example: oya skill source
-└── CLAUDE.md           # Guidance for Claude Code instances
+.claude/skills/oya/
+├── SKILL.md                      # Core workflow and instructions
+├── references/
+│   ├── config-guide.md          # Configuration options
+│   └── future.md                # Future enhancements
+└── assets/
+    └── templates/
+        ├── daily.md             # Daily planning template
+        └── weekly.md            # Weekly planning template
 ```
 
-## Contributing
+## Philosophy
 
-When creating skills:
+Oya is designed around three principles:
 
-1. Follow the naming convention: hyphen-case, lowercase (e.g., `my-skill`)
-2. Keep skill names under 64 characters
-3. Keep descriptions under 1024 characters
-4. Validate before packaging
-5. Test the skill on real tasks before sharing
+1. **Fast** - Quick planning that respects your time
+2. **Practical** - Focus on what actually matters today
+3. **Intentional** - Start with clarity, move with purpose
+
+The goal isn't perfect plans—it's consistent momentum. Plans change, and that's okay. What matters is starting each day with intention and adjusting as you go.
 
 ## License
 
-See individual skill licenses in their respective SKILL.md files.
+See the license information in `.claude/skills/oya/SKILL.md`.
