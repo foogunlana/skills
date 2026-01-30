@@ -19,8 +19,6 @@
 
 **Reflections**
 
-- {what_went_well}
-- {what_didnt}
-- {insights_or_blockers}
+<!-- End-of-day reflections will be added here -->
 
 ---

@@ -23,38 +23,30 @@ A planning skill that helps users start their day or week with intention and cla
 └─────────────────────────────────────────────────────┘
 ```
 
-## Flow Approach
+## Two Flows
 
-**After onboarding, use FAST approach:**
-1. Propose note from context (leave `<!-- comments -->` where unsure)
-2. User edits
-3. Critique based on coaching patterns (if enabled)
+Oya has two distinct flows depending on whether the user has been onboarded:
 
-**Key principles:**
-- **Minimize questions** - Make assumptions from config and previous notes
-- **No multi-select after onboarding** - Only during initial setup
-- **Sparse context = minimal output** - If little info available, keep todos minimal/empty
-- **Guide for next time** - When sparse, note what user should add to get better suggestions
+| Condition                  | Flow                                                                                    |
+| -------------------------- | --------------------------------------------------------------------------------------- |
+| No `.claude/oya.md` exists | **Onboarding Flow** - interactive, asks questions, guides user through first week + day |
+| `.claude/oya.md` exists    | **Regular Flow** - FAST approach, no questions, proposes directly from context          |
 
-**Only ask questions during onboarding.** After that, propose directly.
+---
 
-## Step 0: Onboarding (First Run Only)
+## Onboarding Flow (First Run Only)
 
-**Detection:** Check if `.claude/oya.md` exists.
+**Detection:** Check if `.claude/oya.md` exists. If no config exists, run this flow. Otherwise skip to Regular Flow.
 
-| Condition        | Action                   |
-| ---------------- | ------------------------ |
-| No config exists | Run this onboarding flow |
-| Config exists    | Skip to Step 1           |
+**Goal:** Give user the "Aha" moment by creating authentic weekly goals first, then personalized daily tasks.
 
-**Note:** This is the ONLY time oya asks questions. After onboarding, oya uses FAST approach (propose directly, no questions).
+**Note:** This is the ONLY time oya asks questions and waits for user input.
 
-### Part 1: Welcome & Branding
+**Step 1: Welcome & Branding**
 
 Display this welcome message:
 
 ```
-.
             ██████╗  ██╗   ██╗  █████╗
            ██╔═══██╗ ╚██╗ ██╔╝ ██╔══██╗
            ██║   ██║  ╚████╔╝  ███████║
@@ -69,8 +61,7 @@ Display this welcome message:
 
 Then show the origin:
 
-> *Named for the Yoruba goddess of winds and change—Oya clears\n
-> what no longer serves, making space for transformation.*
+> *Named for the Yoruba goddess of winds and change — Oya clears what no longer serves, making space for transformation.*
 
 Then explain the workflow:
 
@@ -102,48 +93,64 @@ Then explain the workflow:
 
 *Let's set up your planning system...*
 
-### Part 2: Setup Wizard
+**Step 2: Create Weekly Note First**
 
-Use a single AskUserQuestion prompt to gather all setup information at once.
+Get current date with `date` command.
 
-**Prompt:**
+Create the weekly note immediately using the minimal template from `assets/templates/weekly.md`:
+- Just the structure with `<!-- Add your goals and tasks here -->`
+- No assumptions about user's goals
+- Save to proper file path
+
+**Step 3: Ask User to Edit Weekly Note**
+
+Display:
 
 ```
-Let's personalize your planning experience. Answer what you'd like—you can
-skip any question and add it later in .claude/oya.md
+I've created your weekly note: [path/to/weekly-note.md]
+
+What's your goal this week? Go edit it now - add your goals and tasks.
+
+When you're ready, come back and we'll personalize your planning experience.
+```
+
+**Wait for user to return.** Do not proceed until user signals they're ready.
+
+**Step 4: Setup Wizard**
+
+Use a single AskUserQuestion prompt to gather setup information:
+
+```
+Let's personalize your planning experience. You can skip any question and add it later in .claude/oya.md
 
 1. What should I call you?
 
 2. What's your guiding phrase (mantra)?
    Examples: "Give Everything." • "Make it happen." • "One day at a time."
 
-3. What values guide your decisions? (optional, shown in weekly notes)
+3. What life areas do you want to track? (comma-separated)
+   Examples: home, work, personal, health, creative
+
+4. What values guide your decisions? (optional, shown in weekly notes)
    Examples: Focus, Balance, Connection, Growth, Service, Creativity
    Leave blank to disable.
 
-4. What life areas do you want to track? (comma-separated)
-   Examples: home, work, personal, health, creative
-
-5. How should tasks show their context?
-   Options: "hidden" (default) • "[context] - task" • "edit template yourself"
-
-6. Any personal nudges? (optional, shown in daily entries)
+5. Any personal nudges? (optional, shown in daily entries)
    Examples: "If not now, when?" • "Focus on service" • "What would future you thank you for?"
    Leave blank to disable.
 
-7. Enable coaching? (yes/no)
+6. Enable coaching? (yes/no)
    Coaching helps spot patterns like overloading or vague goals.
 ```
 
 Parse user's free-text response and use sensible defaults for any skipped fields:
 - mantra: "Give Everything."
 - contexts: home, work, personal
-- context_display: hidden
 - coaching: true
 
-**Write Config**
+**Step 5: Write Config**
 
-Generate `.claude/oya.md` with user's choices in this format:
+Generate `.claude/oya.md` with user's choices:
 
 ```yaml
 name: "{user_name}"
@@ -168,48 +175,86 @@ contexts:
   - work
   - personal
 
-context_display: hidden  # options: hidden, prefix, custom
+context_display: hidden
 
 coaching:
   enabled: {true|false}
 ```
 
-**How to use Oya:**
+**Step 6: Create Daily Tasks**
 
-After setup, explain the daily workflow:
+Read the weekly note the user just edited. Create today's daily entry based on:
+- Tasks from weekly note (copy verbatim, only today's relevant items)
+- Values/nudges from config
+- User's contexts
+
+Append to weekly note using template from `assets/templates/daily.md`.
+
+**Step 7: Ask User to Edit Daily Tasks**
+
+Display:
 
 ```
-How Oya works:
+I've added today's tasks based on your weekly goals. Review and edit them in the same file.
 
-1. Run /oya each day - it creates or updates your notes
+When you're ready, come back for feedback.
+```
+
+**Wait for user to return.**
+
+**Step 8: Automatic Critique**
+
+Read the edited daily tasks. Provide coaching critique based on:
+- Alignment with weekly goals
+- Balance across contexts (work, home, personal)
+- Coaching patterns if enabled
+
+Then show success message:
+
+```
+🌀 Great start!
+
+Your planning system is ready. Here's how it works:
+
+1. Run /oya each day - creates or updates your notes
 2. Edit the notes it proposes - make them yours
-3. Come back anytime:
-   • /oya         → continue planning
-   • /oya critique → get feedback on your notes
+3. Notes carry forward until done - no task left behind
+
+Run /oya anytime to continue planning.
 ```
 
-Show success message:
-
-```
-🌀 Setup complete!
-
-Your config has been saved to .claude/oya.md
-
-Run /oya anytime to start planning.
-```
-
-**Exit after onboarding** - do not auto-start weekly planning.
+**Exit after onboarding and critique.**
 
 ---
 
-## Step 1: Detection
+## Regular Flow (Every Subsequent Run)
 
-1. **Get current date**: Run `date` in terminal - do not rely on system date
+**FAST approach - no questions, just propose:**
+1. Gather context (previous days, weeks, config, references)
+2. Propose note directly (leave `<!-- comments -->` where unsure)
+3. User edits
+4. Offer coaching critique (if enabled)
+
+**Key principles:**
+- **No questions** - Make assumptions from config and previous notes
+- **Sparse context = minimal output** - If little info, keep todos minimal/empty
+- **Guide for next time** - When sparse, note what user should add for better suggestions
+
+### Step 1: Detection
+
+1. **Get current date and time**: Run `date` in terminal - do not rely on system date. Note the time for reflection prompts.
+
 2. **Check if weekend**: Saturday/Sunday → Use Weekend Flow
-3. **Check what exists**:
+
+3. **Check for pending reflections**:
+   - If after 5pm AND today's entry exists but has no reflections → Ask: "Want to reflect on today before wrapping up?"
+   - If morning AND yesterday's entry has no reflections → Do yesterday's reflection before starting today
+
+4. **Check what exists**:
    - Does current week's note exist? → If NO: Create weekly note
    - Does today's entry exist in weekly note? → If NO: Add daily entry
-4. **Report findings**:
+
+5. **Report findings**:
    ```
    "Good morning! Here's what I found:
    - [✓/✗] This week's note (Jan 27th - Jan 31st)
@@ -218,7 +263,7 @@ Run /oya anytime to start planning.
    Let's set up what's missing..."
    ```
 
-## Step 2: Load Config
+### Step 2: Load Config
 
 Read `.claude/oya.md` (created during onboarding).
 
@@ -230,14 +275,18 @@ See `references/config-guide.md` for configuration options.
 - paths.base: "planning"
 - coaching.enabled: true
 
-## Step 3: Gather Context
+### Step 3: Gather Context
 
 Before proposing notes, read:
 1. **Previous day's entry** - carry forward uncompleted `[ ]` and `[-]` items verbatim
 2. **Last week's note** - unchecked items for carry-forward (if new week)
 3. **Monthly goals** - if they exist, use as north star
 
-## Flow A: Weekly Note (FAST approach)
+### Step 4: Create/Update Notes
+
+Based on detection results, use one of these flows:
+
+#### Flow A: Weekly Note
 
 **Propose directly** based on context gathered. Use template from `assets/templates/weekly.md`.
 
@@ -258,7 +307,7 @@ Before proposing notes, read:
 1. User edits the note
 2. Offer coaching critique based on config patterns (if enabled)
 
-## Flow B: Daily Entry (FAST approach)
+#### Flow B: Daily Entry
 
 **Propose directly.** Append to weekly note. Use template from `assets/templates/daily.md`.
 
@@ -276,7 +325,7 @@ Before proposing notes, read:
 - Propose minimal daily entry
 - After user edits, note: "Add more tasks to weekly note to get better daily suggestions"
 
-## Flow C: Weekend Flow
+#### Flow C: Weekend
 
 Skip work planning. Instead:
 1. Make ONE tailored suggestion (rest, connection, or creative pursuit)
@@ -311,11 +360,11 @@ Only coach if `coaching.enabled: true` in config.
 
 ## File Paths
 
-| Type   | Default Path                      |
-| ------ | --------------------------------- |
-| Base   | `{paths.base}/{Year}/{MM}-{Mon}/` |
+| Type   | Default Path                                                                            |
+| ------ | --------------------------------------------------------------------------------------- |
+| Base   | `{paths.base}/{Year}/{MM}-{Mon}/`                                                       |
 | Weekly | `{Mon} {DD}{th/st/nd/rd} - {Mon} {DD}{th/st/nd/rd}.md` (e.g., `Jan 27th - Jan 31st.md`) |
-| Config | `.claude/oya.md`                  |
+| Config | `.claude/oya.md`                                                                        |
 
 **Weekly file naming format:**
 - Use full month name (Jan, Feb, Mar, etc.)
@@ -323,11 +372,29 @@ Only coach if `coaching.enabled: true` in config.
 - Format: `[Month] [Day with ordinal] - [Month] [Day with ordinal].md`
 - Examples: `Jan 27th - Jan 31st.md`, `Feb 1st - Feb 5th.md`, `Dec 30th - Jan 3rd.md`
 
-## Reflection (End of Day)
+## Reflection (End of Day or Next Morning)
 
-When user returns in evening or next morning:
+**When adding reflections:**
+
+Triggered by detection (Step 1):
+- After 5pm: If today's entry exists but has no reflections → Ask: "Want to reflect on today before wrapping up?"
+- Next morning: If yesterday's entry has no reflections → Do yesterday's reflection before starting today
+
+**Process:**
 1. Ask ONE straightforward question: "What went well today? What didn't?"
-2. Keep it minimal - bullet points only
+2. Keep it minimal - bullet points only, no extra prose
 3. Append under **Reflections** in that day's entry
-4. Sync completed tasks back to weekly list
-5. No follow-up questions - user can elaborate if they want
+4. No follow-up questions - user can elaborate if they want
+
+**Sync completed tasks:**
+- When tasks are checked off in daily list, also check them off in the weekly tasks list
+- Keep both lists in sync
+
+**Format:**
+```
+**Reflections**
+
+- What went well: {user input}
+- What didn't: {user input}
+- Insights or blockers: {user input if provided}
+```
