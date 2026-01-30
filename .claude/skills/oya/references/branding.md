@@ -20,6 +20,8 @@ Display these verbatim when referenced from SKILL.md.
 
 ## Logo
 
+Display this verbatim.
+
 ```
 .
             ██████╗  ██╗   ██╗  █████╗
