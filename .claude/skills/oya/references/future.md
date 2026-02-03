@@ -2,6 +2,7 @@
 
 Extended - Philosophy - all abstractions should be completely hidden from the user.
 - Life-cycle - Revamp to build good habits - trigger, action, variable reward, investment
+- Trigger + Investment - Intray - add episodic notes
 - Speed - Week task updates - check off tasks done by transferring from daily to weekly
 - Investment + Reward - Retrospectives feature (whenever triggered, but montly prompt)
 - Investment - Goals
