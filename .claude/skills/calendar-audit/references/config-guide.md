@@ -11,7 +11,7 @@ direct_reports: 6
 
 focus_ratio: 60  # Target percentage of work week as focus time (60 = 60% focus / 40% meetings)
 work_hours: 40   # Hours in your work week
-min_daily_focus: 4  # Minimum hours of protected deep work per day
+min_daily_focus: 4  # Minimum contiguous hours of uninterrupted deep work per day
 
 maker_days:
   - Tuesday
@@ -58,7 +58,7 @@ meeting_memory: ".claude/modules/meeting-scores.md"
 |-------|-------------|---------|
 | `focus_ratio` | Target % of work week as focus time | 60 |
 | `work_hours` | Total hours in work week | 40 |
-| `min_daily_focus` | Minimum hours of protected deep work per day | 4 |
+| `min_daily_focus` | Minimum contiguous hours of uninterrupted deep work per day | 4 |
 | `maker_days` | Preferred days for fewer meetings | ["Tuesday", "Thursday"] |
 
 **Recommended ratios by role:**

@@ -59,7 +59,7 @@ How much focus time do you think you need each week?
 
 Research says knowledge workers need 3-4 hours of uninterrupted focus daily.
 I recommend at least 60% focus / 40% meetings — that's ~24h focus out of a
-40h week, with at least 4 hours of protected deep work per day.
+40h week, with at least one 4-hour contiguous block of deep work per day.
 
 What feels right for you?
 → 60/40 (recommended — player-coach, technical leader)
@@ -203,7 +203,7 @@ Read `calendar.tool` from config and pull the week's events:
   - **Contiguous focus blocks** (2+ hours uninterrupted by meetings)
   - **Per-day breakdown** (meetings vs focus per day)
 - Flag:
-  - Days with focus time under `min_daily_focus` hours (default 2)
+  - Days without a contiguous focus block of at least `min_daily_focus` hours (default 4)
   - Days with 5+ meetings
   - Back-to-back meetings without breaks
   - Scheduling conflicts (overlapping events)
@@ -230,7 +230,7 @@ Work week:              [work_hours, default 40]h
 Target focus ratio:     [focus_ratio, default 60]%
 Target focus hours:     [work_hours * ratio]h
 Target meeting hours:   [work_hours * (1-ratio)]h
-Min daily focus:        [min_daily_focus, default 4]h
+Min daily focus block:  [min_daily_focus, default 4]h contiguous
 
 Current meetings:       Xh (raw) / Yh (with transitions)
 Current focus:          Zh
@@ -240,9 +240,9 @@ Gap:                    [target - current]h to reclaim
 ```
 
 **Minimum thresholds (always flag if violated):**
-- At least 2 contiguous blocks of 2+ hours per week
+- Every day must have at least one contiguous block of `min_daily_focus` hours (default 4h) — scattered focus doesn't count
 - No day with zero focus time
-- At least 1 "maker day" (4+ hours focus) per week
+- At least 1 "maker day" (4+ contiguous hours focus) per week
 
 ### Step 2: Set Deep Work Goals
 
@@ -364,7 +364,7 @@ If the file doesn't exist, create it:
 
 ## Key Principles
 
-- **Contiguous blocks matter more than total hours.** 3 hours scattered across 30-min gaps is worth less than 1 contiguous 2-hour block.
+- **Contiguous blocks matter more than total hours.** 3 hours scattered across 30-min gaps is worth less than 1 contiguous 2-hour block. The target is one 4-hour uninterrupted stretch per day — that's where real work happens.
 - **Don't just count meetings — count transitions.** Each meeting has ~15 min of context-switching cost. A day with 6x30min meetings costs ~4.5h, not 3h.
 - **Batch meetings on specific days** when possible. Aim for 1-2 "maker days" (mostly focus) and 2-3 "manager days" (meetings batched).
 - **Morning focus is often more valuable than afternoon focus** for creative and learning work.
