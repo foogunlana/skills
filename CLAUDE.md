@@ -13,6 +13,7 @@ This repository contains skills for Claude Code — productivity tools that exte
 | Oya | `.claude/skills/oya/` | `/oya` | Planning companion — weekly, daily, reflect |
 | Calendar Audit | `.claude/skills/calendar-audit/` | `/calendar-audit` | Protect deep work — score and rank meetings |
 | Trip Planner | `.claude/skills/trip-planner/` | `/trip-planner` | Flight recommendations from natural language |
+| Agent Sounds | `.claude/skills/agent-sounds/` | `/agent-sounds` | Audible notifications on hooks (plan done, task done, errors) |
 
 ---
 

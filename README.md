@@ -7,6 +7,7 @@ A collection of skills for [Claude Code](https://claude.ai/code) — productivit
 | [Oya](#oya) | `/oya` | Planning companion — weekly, daily, reflect |
 | [Calendar Audit](#calendar-audit) | `/calendar-audit` | Protect deep work — score and rank meetings |
 | [Trip Planner](#trip-planner) | `/trip-planner` | Flight recommendations from natural language |
+| Agent Sounds | `/agent-sounds` | Audible notifications on hooks (plan done, task done, errors) |
 
 ---
 
