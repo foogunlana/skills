@@ -67,8 +67,8 @@ Oya is a skill for [Claude Code](https://claude.ai/code) that provides fast, pra
 ### Installation
 
 1. Install Claude Code if you haven't already (see [claude.ai/code](https://claude.ai/code))
-2. Clone this repository or download the oya skill
-3. The skill is located in `.claude/skills/oya/` and will be automatically loaded by Claude Code
+2. Clone this repository or download the packaged Oya plugin from `oya-plugin/`
+3. See `oya-plugin/README.md` for plugin installation and distribution details
 
 ### First Use
 
@@ -153,7 +153,7 @@ paths:
   base: "planning"  # Default location
 ```
 
-See `.claude/skills/oya/references/config-guide.md` for full configuration options.
+See `oya-plugin/skills/oya/references/config-guide.md` for full configuration options.
 
 ## Commands
 
@@ -163,16 +163,22 @@ See `.claude/skills/oya/references/config-guide.md` for full configuration optio
 ## Repository Structure
 
 ```
-.claude/skills/oya/
-├── SKILL.md                      # Core workflow and instructions
-├── references/
-│   ├── config-guide.md          # Configuration options
-│   └── future.md                # Future enhancements
-└── assets/
-    └── templates/
-        ├── daily.md             # Daily planning template
-        └── weekly.md            # Weekly planning template
+oya-plugin/
+├── .claude-plugin/
+│   └── plugin.json             # Plugin manifest
+└── skills/
+    └── oya/
+        ├── SKILL.md            # Core workflow and instructions
+        ├── references/
+        │   ├── config-guide.md # Configuration options
+        │   └── future.md       # Future enhancements
+        └── assets/
+            └── templates/
+                ├── daily.md    # Daily planning template
+                └── weekly.md   # Weekly planning template
 ```
+
+For distribution-specific setup, versioning, and packaging guidance, see `oya-plugin/PUBLISHING.md`.
 
 ## Philosophy
 
