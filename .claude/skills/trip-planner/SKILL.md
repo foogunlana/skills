@@ -360,7 +360,7 @@ For multi-city trips (e.g. "London → Paris → Rome → London"):
 Stored as `.claude/trip-planner.md` in user's working directory.
 
 ```yaml
-name: "Foluso"
+name: "Jane"
 home_airport: "LHR"
 
 preferences:

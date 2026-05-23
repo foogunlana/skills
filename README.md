@@ -2,12 +2,24 @@
 
 A collection of skills for [Claude Code](https://claude.ai/code) — productivity tools that extend Claude with structured workflows.
 
+## All Skills
+
 | Skill | Command | What it does |
 |-------|---------|--------------|
 | [Oya](#oya) | `/oya` | Planning companion — weekly, daily, reflect |
 | [Calendar Audit](#calendar-audit) | `/calendar-audit` | Protect deep work — score and rank meetings |
 | [Trip Planner](#trip-planner) | `/trip-planner` | Flight recommendations from natural language |
 | Agent Sounds | `/agent-sounds` | Audible notifications on hooks (plan done, task done, errors) |
+| Deck | `/deck` | Slidev presentation builder with customizable brand theme |
+| Commit & MR | `/commit-and-mr` | Commit and create MR/PR with conventional commits |
+| Ralph PM | `/ralph-pm` | Product manager for Ralph autonomous builds |
+| Create Ticket | `/create-ticket` | Turn rough ideas into well-structured tickets |
+| Backlog Grooming | `/backlog-grooming` | Break down epics into refined subtasks |
+| TDD | `/tdd` | Test-driven development — write failing tests first |
+| Self Improve | `/self-improve` | Post-task retrospective for AI self-improvement |
+| Disk Cleanup | `/disk-cleanup` | Scan and clean macOS disk space |
+| MD Frontmatter | `/md-frontmatter` | Auto-add provenance frontmatter to new .md files |
+| Voice | `/voice` | Match user's authentic communication style |
 
 ---
 

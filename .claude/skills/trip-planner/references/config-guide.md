@@ -5,7 +5,7 @@ Create `.claude/trip-planner.md` in your project to customize the trip-planner s
 ## Full Configuration Example
 
 ```yaml
-name: "Foluso"
+name: "Jane"
 home_airport: "LHR"
 
 preferences:

@@ -13,7 +13,17 @@ This repository contains skills for Claude Code — productivity tools that exte
 | Oya | `.claude/skills/oya/` | `/oya` | Planning companion — weekly, daily, reflect |
 | Calendar Audit | `.claude/skills/calendar-audit/` | `/calendar-audit` | Protect deep work — score and rank meetings |
 | Trip Planner | `.claude/skills/trip-planner/` | `/trip-planner` | Flight recommendations from natural language |
-| Agent Sounds | `.claude/skills/agent-sounds/` | `/agent-sounds` | Audible notifications on hooks (plan done, task done, errors) |
+| Agent Sounds | `.claude/skills/agent-sounds/` | `/agent-sounds` | Audible notifications on hooks |
+| Deck | `.claude/skills/deck/` | `/deck` | Slidev presentation builder with customizable brand theme |
+| Commit & MR | `.claude/skills/commit-and-mr/` | `/commit-and-mr` | Commit and create MR/PR with conventional commits |
+| Ralph PM | `.claude/skills/ralph-pm/` | `/ralph-pm` | Product manager for Ralph autonomous builds |
+| Create Ticket | `.claude/skills/create-ticket/` | `/create-ticket` | Turn rough ideas into well-structured tickets |
+| Backlog Grooming | `.claude/skills/backlog-grooming/` | `/backlog-grooming` | Break down epics into refined subtasks |
+| TDD | `.claude/skills/tdd/` | `/tdd` | Test-driven development workflow |
+| Self Improve | `.claude/skills/self-improve/` | `/self-improve` | Post-task retrospective for AI self-improvement |
+| Disk Cleanup | `.claude/skills/disk-cleanup/` | `/disk-cleanup` | Scan and clean macOS disk space |
+| MD Frontmatter | `.claude/skills/md-frontmatter/` | `/md-frontmatter` | Auto-add provenance frontmatter to new .md files |
+| Voice | `.claude/skills/voice/` | `/voice` | Match user's authentic communication style |
 
 ---
 
